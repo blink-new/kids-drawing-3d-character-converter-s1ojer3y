@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Department of Transmutation Official Colors */
+    --dept-primary: 45 55 72;        /* Dark slate gray - official government */
+    --dept-accent: 229 62 62;        /* Red - classification alerts */
+    --dept-background: 247 250 252;  /* Light gray - document background */
+    --dept-dark: 26 32 44;           /* Very dark - headers */
+    --background: 247 250 252;       /* Light gray background */
+    --foreground: 26 32 44;          /* Dark text */
+    --card: 255 255 255;             /* White cards */
+    --card-foreground: 26 32 44;     /* Dark text on cards */
+    --popover: 255 255 255;
+    --popover-foreground: 26 32 44;
+    --primary: 45 55 72;             /* Dark slate */
+    --primary-foreground: 255 255 255;
+    --secondary: 241 245 249;        /* Light gray */
+    --secondary-foreground: 45 55 72;
+    --muted: 248 250 252;            /* Very light gray */
+    --muted-foreground: 100 116 139; /* Medium gray text */
+    --accent: 229 62 62;             /* Red accent */
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 226 232 240;           /* Light border */
+    --input: 255 255 255;            /* White inputs */
+    --ring: 45 55 72;                /* Dark ring */
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 255 255 255;
+    --sidebar-foreground: 26 32 44;
+    --sidebar-primary: 45 55 72;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 241 245 249;
+    --sidebar-accent-foreground: 45 55 72;
+    --sidebar-border: 226 232 240;
+    --sidebar-ring: 45 55 72;
+  }
+
+  .dark {
+    --background: 26 32 44;
+    --foreground: 248 250 252;
+    --card: 30 41 59;
+    --card-foreground: 248 250 252;
+    --popover: 30 41 59;
+    --popover-foreground: 248 250 252;
+    --primary: 229 62 62;
+    --primary-foreground: 255 255 255;
+    --secondary: 51 65 85;
+    --secondary-foreground: 248 250 252;
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+    --accent: 229 62 62;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 229 62 62;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 30 41 59;
+    --sidebar-foreground: 248 250 252;
+    --sidebar-primary: 229 62 62;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 51 65 85;
+    --sidebar-accent-foreground: 248 250 252;
+    --sidebar-border: 51 65 85;
+    --sidebar-ring: 229 62 62;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+
+    font-family: Inter, sans-serif;
+  }
+}
+
+/* Department of Transmutation Official Styles */
+.dept-header {
+  background: linear-gradient(135deg, hsl(var(--dept-primary)), hsl(var(--dept-dark)));
+  border-bottom: 4px solid hsl(var(--dept-accent));
+}
+
+.dept-seal {
+  filter: drop-shadow(2px 2px 4px rgb(0 0 0 / 20%));
+}
+
+/* Official document styling */
+.official-document {
+  background: linear-gradient(to bottom, #fff, #f8fafc);
+  border: 2px solid hsl(var(--border));
+  position: relative;
+}
+
+.official-document::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    hsl(var(--dept-accent)), 
+    hsl(var(--dept-primary)), 
+    hsl(var(--dept-accent))
+  );
+}
+
+/* Classification badges */
+.classification-safe {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  color: #166534;
+  border: 1px solid #22c55e;
+}
+
+.classification-euclid {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  border: 1px solid #f59e0b;
+}
+
+.classification-keter {
+  background: linear-gradient(135deg, #fecaca, #fca5a5);
+  color: #991b1b;
+  border: 1px solid #ef4444;
+}
+
+/* Terminal/console styling */
+.terminal {
+  background: #000;
+  color: #0f0;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0f0, transparent);
+  animation: scan-line 2s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* Processing animations */
+@keyframes processing-pulse {
+  0%, 100% { 
+    opacity: 100%; 
+    transform: scale(1);
+  }
+
+  50% { 
+    opacity: 70%; 
+    transform: scale(1.05);
+  }
+}
+
+.processing-indicator {
+  animation: processing-pulse 2s ease-in-out infinite;
+}
+
+/* Official stamp effect */
+.official-stamp {
+  position: relative;
+  display: inline-block;
+}
+
+.official-stamp::after {
+  content: 'CLASSIFIED';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  background: hsl(var(--dept-accent));
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  opacity: 90%;
+  pointer-events: none;
+}
+
+/* Secure document watermark */
+.secure-document {
+  position: relative;
+  overflow: hidden;
+}
+
+.secure-document::before {
+  content: 'DEPARTMENT OF TRANSMUTATION • CLASSIFIED • DEPARTMENT OF TRANSMUTATION • CLASSIFIED • ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: transparent;
+  color: hsl(var(--muted-foreground));
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  opacity: 10%;
+  transform: rotate(-45deg);
+  white-space: nowrap;
+  line-height: 2rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Entity reveal animation */
+@keyframes entity-materialize {
+  0% { 
+    opacity: 0%;
+    transform: scale(0.8) rotateY(90deg);
+    filter: blur(10px);
+  }
+
+  50% {
+    opacity: 50%;
+    transform: scale(0.9) rotateY(45deg);
+    filter: blur(5px);
+  }
+
+  100% { 
+    opacity: 100%;
+    transform: scale(1) rotateY(0deg);
+    filter: blur(0);
+  }
+}
+
+.entity-reveal {
+  animation: entity-materialize 1.2s ease-out forwards;
+}
+
+/* Government form styling */
+.govt-form {
+  background: linear-gradient(to bottom, #fff, #f8fafc);
+  border: 2px solid hsl(var(--border));
+  border-left: 4px solid hsl(var(--dept-accent));
+}
+
+/* Status indicators */
+.status-active {
+  position: relative;
+}
+
+.status-active::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 100%;
+  background: #22c55e;
+  border-radius: 2px;
+}
+
+.status-processing {
+  position: relative;
+}
+
+.status-processing::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 100%;
+  background: #f59e0b;
+  border-radius: 2px;
+  animation: processing-pulse 1s ease-in-out infinite;
+}
+
+/* Hover effects for entity cards */
+.entity-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.entity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgb(0 0 0 / 15%);
+}
+
+.entity-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 20%), transparent);
+  transition: left 0.5s ease;
+}
+
+.entity-card:hover::before {
+  left: 100%;
+}
+
+/* Monospace text for official documents */
+.official-text {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.025em;
+}
+
+/* Security clearance indicator */
+.clearance-indicator {
+  background: linear-gradient(135deg, hsl(var(--dept-primary)), hsl(var(--dept-dark)));
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Progress bar styling for transmutation */
+.transmutation-progress {
+  background: linear-gradient(90deg, 
+    hsl(var(--dept-primary)), 
+    hsl(var(--dept-accent))
+  );
+  height: 8px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.transmutation-progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 30%), transparent);
+  animation: progress-shine 2s ease-in-out infinite;
+}
+
+@keyframes progress-shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Responsive adjustments */
+@media (width <= 768px) {
+  .dept-header h1 {
+    font-size: 1rem;
+  }
+  
+  .dept-header p {
+    font-size: 0.75rem;
+  }
+}
